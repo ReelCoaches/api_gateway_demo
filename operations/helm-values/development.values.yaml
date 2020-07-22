@@ -1,0 +1,7 @@
+environmentVars:
+  enabled: true
+  # key/value (strings) that will be made available to the application
+  # at runtime.
+  secret: {}
+  configMap:
+    SECRET_KEY_BASE: a/39FrT5Tr6HuepQ739cthPgWSbdcIWVKG1lDSiUVMCG5QUJyTZziGCIITrSS6+N

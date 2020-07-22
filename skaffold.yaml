@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+build:
+  artifacts:
+  - image: us.gcr.io/fantag-c0979/github.com/reelcoaches/api-gateway-demo
+portForward:
+- resourceType: deployment
+  resourceName: api-gateway-demo
+  namespace: default
+  port: 4000
+
+deploy:
+  helm:
+    releases:
+    - name: api-gateway-demo
+      chartPath: operations/helm-chart
+      skipBuildDependencies: true # Skip helm dep build
+      valuesFiles: ["operations/helm-values/development.values.yaml"]
+      artifactOverrides:
+        image: us.gcr.io/fantag-c0979/github.com/reelcoaches/api-gateway-demo
