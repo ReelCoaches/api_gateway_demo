@@ -22,6 +22,7 @@ RUN mix do deps.get, deps.compile
 COPY assets/package.json assets/package-lock.json ./assets/
 RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 
+COPY priv priv
 COPY assets assets
 RUN npm run --prefix ./assets deploy
 RUN mix phx.digest
@@ -45,5 +46,8 @@ USER nobody:nobody
 COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/demo ./
 
 ENV HOME=/app
+
+ENV SECRET_KEY_BASE=BapcdTI1otbD7rxbn4O+xOorN4wjiO0dPZCmN9iAvR/RmEouC5lHecZyV4sxwnAu
+EXPOSE 4000
 
 CMD ["bin/demo", "start"]
